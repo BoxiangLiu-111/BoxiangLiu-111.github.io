@@ -1,21 +1,18 @@
 import React from 'react';
-import { Sun, Moon, Languages, Github, Globe, Menu, X, Rocket } from 'lucide-react';
-import { PROFILE_DATA } from '../data/profileData';
+import { Sun, Moon, Languages, Menu, X } from 'lucide-react';
 
 interface HeaderNavbarProps {
   lang: 'zh' | 'en';
   setLang: (lang: 'zh' | 'en') => void;
   darkMode: boolean;
   setDarkMode: (dark: boolean) => void;
-  onOpenDeploy: () => void;
 }
 
 export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
   lang,
   setLang,
   darkMode,
-  setDarkMode,
-  onOpenDeploy
+  setDarkMode
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -122,17 +119,6 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
             {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
           </button>
 
-          {/* GitHub Pages Deploy Help */}
-          <button
-            type="button"
-            onClick={onOpenDeploy}
-            className="hidden md:flex items-center space-x-1 px-2.5 py-1.5 text-xs font-medium rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-colors"
-            title="Deploy to BoxiangLiu-111.github.io"
-          >
-            <Rocket className="w-3.5 h-3.5 text-emerald-500" />
-            <span>{lang === 'zh' ? '部署主页' : 'Deploy'}</span>
-          </button>
-
           {/* Mobile hamburger */}
           <button
             type="button"
@@ -164,19 +150,6 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
               {item.label[lang]}
             </button>
           ))}
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenDeploy();
-              }}
-              className="flex items-center space-x-1 px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-600 text-white"
-            >
-              <Rocket className="w-3.5 h-3.5" />
-              <span>{lang === 'zh' ? 'GitHub Pages 部署指南' : 'Deploy Guide'}</span>
-            </button>
-          </div>
         </nav>
       )}
     </header>

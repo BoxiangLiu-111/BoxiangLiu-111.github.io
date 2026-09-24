@@ -14,7 +14,6 @@ import { Footer } from './components/Footer';
 import { Publication } from './data/profileData';
 
 const BibtexModal = lazy(() => import('./components/BibtexModal').then(({ BibtexModal }) => ({ default: BibtexModal })));
-const ExportDeployModal = lazy(() => import('./components/ExportDeployModal').then(({ ExportDeployModal }) => ({ default: ExportDeployModal })));
 
 export default function App() {
   const [lang, setLang] = useState<'zh' | 'en'>('zh');
@@ -29,7 +28,6 @@ export default function App() {
   });
 
   const [activeBibtexPub, setActiveBibtexPub] = useState<Publication | null>(null);
-  const [isDeployModalOpen, setIsDeployModalOpen] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -75,14 +73,10 @@ export default function App() {
         setLang={setLang}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
-        onOpenDeploy={() => setIsDeployModalOpen(true)}
       />
 
       {/* Top Hero Cover & Floating Namecard */}
-      <ProfileHero
-        lang={lang}
-        onOpenDeploy={() => setIsDeployModalOpen(true)}
-      />
+      <ProfileHero lang={lang} />
 
       {/* Main Content Column */}
       <main id="main-content" className="flex-1 min-w-0 max-w-[880px] w-full mx-auto px-4 sm:px-6" tabIndex={-1}>
@@ -133,16 +127,6 @@ export default function App() {
         </Suspense>
       )}
 
-      {/* GitHub Pages Deploy Helper */}
-      {isDeployModalOpen && (
-        <Suspense fallback={null}>
-          <ExportDeployModal
-            isOpen={isDeployModalOpen}
-            onClose={() => setIsDeployModalOpen(false)}
-            lang={lang}
-          />
-        </Suspense>
-      )}
     </div>
   );
 }
