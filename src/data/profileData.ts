@@ -295,7 +295,7 @@ export const PROFILE_DATA = {
     {
       id: 'exp-2',
       title: {
-        zh: '海洋图像感知与多传感器协同感知研究',
+        zh: '海洋图像感知与跨介质成像恢复',
         en: 'Marine Image Perception & Multi-Sensor Collaborative Sensing'
       },
       institution: {
