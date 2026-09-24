@@ -1,0 +1,6 @@
+{
+  "name": "Academic Portfolio Studio",
+  "description": "Personal academic homepage of Boxiang Liu (刘博翔), Undergraduate in Automation at Hunan University of Science and Technology (HNUST).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
