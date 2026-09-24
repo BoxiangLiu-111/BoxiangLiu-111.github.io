@@ -7,10 +7,13 @@ interface ProfileHeroProps {
   onOpenDeploy: () => void;
 }
 
+const DEFAULT_AVATAR_SRC = '/profile-photo.webp';
+const DEFAULT_COVER_SRC = '/campus-photo.webp';
+
 export const ProfileHero: React.FC<ProfileHeroProps> = ({ lang, onOpenDeploy }) => {
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [avatarSrc, setAvatarSrc] = useState<string>('/avatar.svg');
-  const [coverSrc, setCoverSrc] = useState<string>('/campus_cover.svg');
+  const [avatarSrc, setAvatarSrc] = useState<string>(DEFAULT_AVATAR_SRC);
+  const [coverSrc, setCoverSrc] = useState<string>(DEFAULT_COVER_SRC);
   const [isAvatarDragOver, setIsAvatarDragOver] = useState(false);
   const [isCoverDragOver, setIsCoverDragOver] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
@@ -135,14 +138,14 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ lang, onOpenDeploy }) 
   const handleResetAvatar = (e: React.MouseEvent) => {
     e.stopPropagation();
     localStorage.removeItem('boxiang_custom_avatar');
-    setAvatarSrc('/avatar.svg');
+    setAvatarSrc(DEFAULT_AVATAR_SRC);
     showNotice(lang === 'zh' ? '已重置为默认头像' : 'Reset avatar');
   };
 
   const handleResetCover = (e: React.MouseEvent) => {
     e.stopPropagation();
     localStorage.removeItem('boxiang_custom_cover');
-    setCoverSrc('/campus_cover.svg');
+    setCoverSrc(DEFAULT_COVER_SRC);
     showNotice(lang === 'zh' ? '已重置为默认背景' : 'Reset cover');
   };
 
@@ -206,7 +209,7 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ lang, onOpenDeploy }) 
             <span>{lang === 'zh' ? '更换学校背景图' : 'Change Cover'}</span>
           </button>
 
-          {coverSrc !== '/campus_cover.svg' && (
+          {coverSrc !== DEFAULT_COVER_SRC && (
             <button
               type="button"
               onClick={handleResetCover}
@@ -261,7 +264,7 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ lang, onOpenDeploy }) 
                   const file = e.dataTransfer.files?.[0];
                   if (file) processAvatar(file);
                 }}
-                title={lang === 'zh' ? '点击或拖拽您的证件照 (download.jpg) 替换头像' : 'Click or drop your photo to update avatar'}
+                title={lang === 'zh' ? '点击或拖拽照片替换头像' : 'Click or drop your photo to update avatar'}
                 aria-label={lang === 'zh' ? '更换头像' : 'Change profile photo'}
               >
                 <img
@@ -287,14 +290,14 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ lang, onOpenDeploy }) 
               </div>
 
               {/* Reset avatar option if custom photo is loaded */}
-              {avatarSrc !== '/avatar.svg' && (
+              {avatarSrc !== DEFAULT_AVATAR_SRC && (
                 <button
                   type="button"
                   onClick={handleResetAvatar}
                   className="mt-2 text-[11px] text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center space-x-1"
                 >
                   <RotateCcw className="w-3 h-3" />
-                  <span>{lang === 'zh' ? '恢复默认插画' : 'Reset avatar'}</span>
+                  <span>{lang === 'zh' ? '恢复默认照片' : 'Reset avatar'}</span>
                 </button>
               )}
 
