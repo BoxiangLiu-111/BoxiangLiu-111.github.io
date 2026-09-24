@@ -80,7 +80,7 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ lang }) => {
               {/* Email with copy button */}
               <div className="flex items-center justify-center sm:justify-start space-x-2 text-xs sm:text-sm font-mono text-slate-700 dark:text-slate-300">
                 <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-                <span>boxiangliu17 [at] gmail.com</span>
+                <span>{PROFILE_DATA.email}</span>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
